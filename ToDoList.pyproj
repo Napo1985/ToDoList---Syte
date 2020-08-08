@@ -21,6 +21,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ListActions.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Task.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="TaskIdManager.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ToDoList.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

@@ -7,7 +7,7 @@ class Task(object):
 #-----------------------------------------------------------------------------------#
     def __init__(self, taskToDo):
         self.m_isDone = False;
-        self.m_taskID = -1;
+        self.m_taskID = None;
         self.m_timeStemp = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S");
 
         if (taskToDo == ""):

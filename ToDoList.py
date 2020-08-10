@@ -4,19 +4,28 @@ import time
 
 theList = ListActions.ListActions();
 
-task1 = Task.Task("yaniv");
-time.sleep(1)
-task2 = Task.Task("miri");
 
-theList.AddTaskToList(task1);
-theList.AddTaskToList(task2);
+theList.AddTaskToList("yaniv");
+theList.AddTaskToList("Miri");
 
 theList.RemoveTaskFromList(1)
-time.sleep(1)
-task3 = Task.Task("Romi")
-theList.AddTaskToList(task3);
 
+theList.AddTaskToList("Romi");
+theList.MarkTaskAsDone(2)
+
+theList.AddTaskToList("Omer");
+theList.MarkTaskAsDone(1)
+theList.MarkTaskAsUnDone(1)
+allTheTaskes =  theList.GetAllTasks();
+for item in allTheTaskes: 
+    #print(f'{item.m_taskID} | {item.m_task} | {item.m_timeStemp} | {item.m_isDone} ');
+    print(item.m_taskID, item.m_task, item.m_timeStemp, item.m_isDone, sep=' | ');
+theList.RemoveAllTasksFromList()
+
+theList.AddTaskToList("after delete 1");
+theList.AddTaskToList("after delete 2")
 allTheTaskes =  theList.GetAllTasks();
 
 for item in allTheTaskes: 
-    print(item.m_taskID, "|", item.m_task, "|", item.m_timeStemp, "|", item.m_isDone);
+    #print(f'{item.m_taskID} | {item.m_task} | {item.m_timeStemp} | {item.m_isDone} ');
+    print(item.m_taskID, item.m_task, item.m_timeStemp, item.m_isDone, sep=' | ');

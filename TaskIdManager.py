@@ -1,3 +1,5 @@
+import traceback
+
 class TaskIdManager(object):
     """provid uniq Id """
 #-----------------------------------------------------------------------------------#
@@ -6,17 +8,30 @@ class TaskIdManager(object):
         self.IdStack = []
         self.m_RunningId = 0
 #-----------------------------------------------------------------------------------#
-    #get uniq id from the system
+
+
     def GetUniqId(self):
-        newId= 0
-        if not self.IdStack:
-            self.m_RunningId += 1
-            newId = self.m_RunningId;
-        else:
-            newId = self.IdStack.pop();
-        return newId;
+        """
+        get uniq id from the system
+        return- number or None
+        """
+        try:
+            newId= 0
+            if not self.IdStack:
+                self.m_RunningId += 1
+                newId = self.m_RunningId;
+            else:
+                newId = self.IdStack.pop();
+            return newId;
+        except :
+            tb = traceback.format_exc()
+            print (f'EXCEPTION {tb}') 
 #-----------------------------------------------------------------------------------#
     #retrun a uniq id to the system
     def PutUniqId (self, id):
-        self.IdStack.append(id);
+        try:
+            self.IdStack.append(id);
+        except :
+            tb = traceback.format_exc()
+            print (f'EXCEPTION {tb}') 
 #-----------------------------------------------------------------------------------#

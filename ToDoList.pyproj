@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Api.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ListActions.py">
       <SubType>Code</SubType>
     </Compile>

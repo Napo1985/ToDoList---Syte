@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>f716c437-f8e8-4371-a35f-4c1c62c31202</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>ToDoList.py</StartupFile>
+    <StartupFile>test_ListActions.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -28,6 +28,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="TaskIdManager.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="test_ListActions.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ToDoList.py" />

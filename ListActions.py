@@ -38,6 +38,7 @@ class ListActions(object):
             if id in self.m_taskDictionry:
                 removed_value = self.m_taskDictionry.pop(id)
                 self.m_taskIdManager.PutUniqId(id)
+                return removed_value.m_task
         except :
             tb = traceback.format_exc()
             print (f'EXCEPTION {tb}') 
@@ -74,25 +75,14 @@ class ListActions(object):
             print (f'EXCEPTION {tb}') 
 
 #-----------------------------------------------------------------------------------#
-    def MarkTaskAsUnDone(self, id):
-        try:
-            task = self.m_taskDictionry.get(id,None)
-            if task != None:
-                task.m_isDone = False
-            else:
-                return False;
-            return True
-        except :
-            tb = traceback.format_exc()
-            print (f'EXCEPTION {tb}') 
-#-----------------------------------------------------------------------------------#
-    def ConvertTaskToString(self, task):
-        try:
-            if isinstance(task, Task):
-               taskAsStr = f'{task.m_taskID} | {task.m_task} | {task.m_timeStemp} | {task.m_isDone}'
-               return taskAsStr
-        except :
-            tb = traceback.format_exc()
-            print (f'EXCEPTION {tb}') 
-
-#-----------------------------------------------------------------------------------#
+    #def MarkTaskAsUnDone(self, id):
+    #    try:
+    #        task = self.m_taskDictionry.get(id,None)
+    #        if task != None:
+    #            task.m_isDone = False
+    #        else:
+    #            return False;
+    #        return True
+    #    except :
+    #        tb = traceback.format_exc()
+    #        print (f'EXCEPTION {tb}') 

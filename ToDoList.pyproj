@@ -30,6 +30,9 @@
     <Compile Include="Task.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TaskConvertor.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TaskIdManager.py">
       <SubType>Code</SubType>
     </Compile>

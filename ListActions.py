@@ -1,7 +1,7 @@
-from TaskIdManager import TaskIdManager
 from Task import Task
 import traceback
 import IStorage
+import IIdManager
 
 class ListActions(object):
     """implement all ToDoList actions"""
@@ -9,6 +9,9 @@ class ListActions(object):
     def __init__(self,storage,idManager):
         if not isinstance(storage, IStorage.IStorage):
             raise TypeError("storage must inherite from IStorage interface")
+        if not isinstance(idManager, IIdManager.IIdManager):
+            raise TypeError("idManager must inherite from IIdManager interface")
+
         self.m_memory = storage
         self.m_IdManager = idManager
 

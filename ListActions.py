@@ -2,6 +2,7 @@ from Task import Task
 import traceback
 import IStorage
 import IIdManager
+import logging
 
 class ListActions(object):
     """implement all ToDoList actions"""
@@ -14,6 +15,10 @@ class ListActions(object):
 
         self.m_memory = storage
         self.m_IdManager = idManager
+        log = "app.log"
+        logging.basicConfig(filename=log,level=logging.NOTSET ,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+        logging.info('Init list actions')
+
 
     def AddTaskToList(self, taskDescription):
         try:
@@ -24,8 +29,10 @@ class ListActions(object):
                     return False
 
                 self.m_memory.AddTask(newtask.m_taskID,newtask)
+                logging.info(f'task id - {newtask.m_taskID} added to the list')
                 return True
             else:
+                logging.warning(WARNING(f'taskDescription is not str type'))
                 return False
         except :
             tb = traceback.format_exc()
@@ -36,8 +43,10 @@ class ListActions(object):
             if self.m_memory.ContainKey(id):
                 removed_value = self.m_memory.RemoveTask(id)
                 self.m_IdManager.PutUniqId(id)
+                logging.info(f'task id - {id} removed from the list')
                 return removed_value.m_task
             else:
+                logging.warning(f'task id - {id} not found')
                 return None
         except:
             tb = traceback.format_exc()
@@ -49,6 +58,7 @@ class ListActions(object):
                 id = item.m_taskID
                 self.m_IdManager.PutUniqId(id)
             self.m_memory.RemoveAllTasks()
+            logging.info(f'cleared list')
         except:
             tb = traceback.format_exc()
             print (f'EXCEPTION {tb}') 
@@ -67,8 +77,9 @@ class ListActions(object):
             if task != None:
                 task.m_isDone = True;
             else:
+                logging.warning(f'task id - {id} did not marked as done')
                 return False
-
+            logging.info(f'task id - {id} marked as done')
             return True
         except :
             tb = traceback.format_exc()

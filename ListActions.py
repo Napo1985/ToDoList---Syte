@@ -1,69 +1,66 @@
 from TaskIdManager import TaskIdManager
 from Task import Task
 import traceback
-
+import IStorage
 
 class ListActions(object):
     """implement all ToDoList actions"""
     
-#-----------------------------------------------------------------------------------#
-    #get this out of this class and use dependency injection
-    #m_taskDictionry  
-    #m_taskIdManager 
-#-----------------------------------------------------------------------------------#
-    def __init__(self):
-        self.m_taskDictionry = dict()
-        self.m_taskIdManager = TaskIdManager();
-#-----------------------------------------------------------------------------------#
-    # addToList - provide the Task
+    def __init__(self,storage,idManager):
+        if not isinstance(storage, IStorage.IStorage):
+            raise TypeError("storage must inherite from IStorage interface")
+        self.m_memory = storage
+        self.m_IdManager = idManager
+
     def AddTaskToList(self, taskDescription):
         try:
             if isinstance(taskDescription, str):
                 newtask = Task(taskDescription)
-                newtask.m_taskID = self.m_taskIdManager.GetUniqId()
+                newtask.m_taskID = self.m_IdManager.GetUniqId()
                 if (newtask.m_taskID == None):
                     return False
 
-                self.m_taskDictionry[newtask.m_taskID] = newtask;
-                return True;
+                self.m_memory.AddTask(newtask.m_taskID,newtask)
+                return True
             else:
-                return False;
+                return False
         except :
             tb = traceback.format_exc()
             print (f'EXCEPTION {tb}') 
-#-----------------------------------------------------------------------------------#
-    #removeTaskFromList - provid ID
+
     def RemoveTaskFromList (self, id):
         try:
-            if id in self.m_taskDictionry:
-                removed_value = self.m_taskDictionry.pop(id)
-                self.m_taskIdManager.PutUniqId(id)
+            if self.m_memory.ContainKey(id):
+                removed_value = self.m_memory.RemoveTask(id)
+                self.m_IdManager.PutUniqId(id)
                 return removed_value.m_task
-        except :
-            tb = traceback.format_exc()
-            print (f'EXCEPTION {tb}') 
-#-----------------------------------------------------------------------------------#
-    def RemoveAllTasksFromList (self):
-        try:
-            for item in self.m_taskDictionry.values():
-                id = item.m_taskID
-                self.m_taskIdManager.PutUniqId(id)
-            self.m_taskDictionry.clear()
+            else:
+                return None
         except:
             tb = traceback.format_exc()
             print (f'EXCEPTION {tb}') 
-#-----------------------------------------------------------------------------------#
+
+    def RemoveAllTasksFromList (self):
+        try:
+            for item in self.m_memory.GetAllValues():
+                id = item.m_taskID
+                self.m_IdManager.PutUniqId(id)
+            self.m_memory.RemoveAllTasks()
+        except:
+            tb = traceback.format_exc()
+            print (f'EXCEPTION {tb}') 
+
     def GetAllTasks (self):
         try:
-            tasksList = list(self.m_taskDictionry.values());
+            tasksList = list(self.m_memory.GetAllValues());
             return tasksList;
         except :
             tb = traceback.format_exc()
             print (f'EXCEPTION {tb}') 
-#-----------------------------------------------------------------------------------#
+
     def MarkTaskAsDone(self, id):
         try:
-            task = self.m_taskDictionry.get(id,None)
+            task = self.m_memory.GetById(id)
             if task != None:
                 task.m_isDone = True;
             else:
@@ -72,17 +69,4 @@ class ListActions(object):
             return True
         except :
             tb = traceback.format_exc()
-            print (f'EXCEPTION {tb}') 
-
-#-----------------------------------------------------------------------------------#
-    #def MarkTaskAsUnDone(self, id):
-    #    try:
-    #        task = self.m_taskDictionry.get(id,None)
-    #        if task != None:
-    #            task.m_isDone = False
-    #        else:
-    #            return False;
-    #        return True
-    #    except :
-    #        tb = traceback.format_exc()
-    #        print (f'EXCEPTION {tb}') 
+            print (f'EXCEPTION {tb}')

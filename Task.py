@@ -3,8 +3,7 @@ import datetime
 class Task(object):
     """Task class holding the data input from the user"""
     # m_task will display "empty task" if the user had not enterd data
-    #TaskID is a static int 
-#-----------------------------------------------------------------------------------#
+
     def __init__(self, taskToDo):
         self.m_isDone = False;
         self.m_taskID = None;
@@ -15,7 +14,6 @@ class Task(object):
         else:
             self.m_task = taskToDo;       
 
-#-----------------------------------------------------------------------------------#
 
 
     

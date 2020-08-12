@@ -1,5 +1,6 @@
 import flask
-from flask import request, jsonify
+from flask import jsonify
+from flask import request
 from json import JSONEncoder
 from ListActions import ListActions
 from TaskConvertor import TaskConvertor
@@ -22,9 +23,8 @@ def AllTasks():
         taskAsStrlist.append(TaskConvertor().ConvertTaskToString(item))
     return jsonify({'list' :taskAsStrlist}),200
 
-#add req to body
 # curl -i -H "Content-Type: application/json" -X POST http://localhost:5000/tasks/task3
-@app.route('/tasks/<string:new_task>', methods=['POST'])
+@app.route('/tasks/<string:new_task>', methods=['POST'] )
 def CreateTask(new_task):
     if list.AddTaskToList(new_task):
         return flask.Response(status=201)

@@ -15,27 +15,41 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='protobuf.proto',
-  package='simpleToDoTask',
+  package='taskprotobuf',
   syntax='proto2',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x0eprotobuf.proto\x12\x0esimpleToDoTask\"\x18\n\x08ToDoTask\x12\x0c\n\x04name\x18\x01 \x02(\t'
+  serialized_pb=b'\n\x0eprotobuf.proto\x12\x0ctaskprotobuf\"9\n\x06Person\x12\x0c\n\x04task\x18\x01 \x02(\t\x12\x0e\n\x06isDone\x18\x02 \x02(\x08\x12\x11\n\ttimeStemp\x18\x03 \x02(\t'
 )
 
 
 
 
-_TODOTASK = _descriptor.Descriptor(
-  name='ToDoTask',
-  full_name='simpleToDoTask.ToDoTask',
+_PERSON = _descriptor.Descriptor(
+  name='Person',
+  full_name='taskprotobuf.Person',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='name', full_name='simpleToDoTask.ToDoTask.name', index=0,
+      name='task', full_name='taskprotobuf.Person.task', index=0,
       number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='isDone', full_name='taskprotobuf.Person.isDone', index=1,
+      number=2, type=8, cpp_type=7, label=2,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='timeStemp', full_name='taskprotobuf.Person.timeStemp', index=2,
+      number=3, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -52,19 +66,19 @@ _TODOTASK = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=34,
-  serialized_end=58,
+  serialized_start=32,
+  serialized_end=89,
 )
 
-DESCRIPTOR.message_types_by_name['ToDoTask'] = _TODOTASK
+DESCRIPTOR.message_types_by_name['Person'] = _PERSON
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-ToDoTask = _reflection.GeneratedProtocolMessageType('ToDoTask', (_message.Message,), {
-  'DESCRIPTOR' : _TODOTASK,
+Person = _reflection.GeneratedProtocolMessageType('Person', (_message.Message,), {
+  'DESCRIPTOR' : _PERSON,
   '__module__' : 'protobuf_pb2'
-  # @@protoc_insertion_point(class_scope:simpleToDoTask.ToDoTask)
+  # @@protoc_insertion_point(class_scope:taskprotobuf.Person)
   })
-_sym_db.RegisterMessage(ToDoTask)
+_sym_db.RegisterMessage(Person)
 
 
 # @@protoc_insertion_point(module_scope)

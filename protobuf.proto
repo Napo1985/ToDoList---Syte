@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package taskprotobuf;
+
+message Person 
+{
+  required string task = 1;
+  required bool isDone = 2;
+  required string timeStemp = 3;
+}

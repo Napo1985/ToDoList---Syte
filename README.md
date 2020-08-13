@@ -27,6 +27,7 @@ HTTP POST
 /tasks/user_new_task
 Example:
 curl -i -H "Content-Type: application/json" -X POST http://localhost:5000/tasks/user_new_task
+user_new_task = task description
 ```
 
 ##### Delete item

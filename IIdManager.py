@@ -1,7 +1,7 @@
 import abc
 
 class IIdManager(metaclass=abc.ABCMeta):
-    """description of class"""
+    """Interface class for all uniq id providers"""
 
     @abc.abstractmethod
     def GetUniqId(self):

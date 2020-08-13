@@ -2,14 +2,14 @@ import traceback
 import IIdManager
 
 class TaskIdManager(IIdManager.IIdManager):
-    """provid uniq Id """
-
-    #this class use a stack to save all removed id's and reuse them if needed.
+    """this class Providing a uniq id using in memory data structure"""
 
     def __init__(self):
         self.IdStack = []
         self.m_RunningId = 0
 
+    #Returns a uniq id of type int
+    #Function logic - check if there is a reusable id to return,if not it will generate a new unique id
     def GetUniqId(self):
         try:
             newId= 0
@@ -23,6 +23,7 @@ class TaskIdManager(IIdManager.IIdManager):
             tb = traceback.format_exc()
             print (f'EXCEPTION {tb}') 
 
+    #Store unused unique ids
     def PutUniqId (self, id):
         try:
             self.IdStack.append(id);

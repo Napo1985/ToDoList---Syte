@@ -8,8 +8,6 @@ import MemoryStorage
 import TaskIdManager
 
 list = ListActions(MemoryStorage.MemoryStorage(), TaskIdManager.TaskIdManager())
-list.AddTaskToList("CALL doctor")
-list.AddTaskToList("Wash Car")
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True

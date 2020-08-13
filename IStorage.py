@@ -1,7 +1,8 @@
 import abc
 
 class IStorage(metaclass=abc.ABCMeta):
-    """description of class"""
+    """Interface class for a storage type classes"""
+
     @abc.abstractmethod
     def AddTask(self,id,task):
         pass

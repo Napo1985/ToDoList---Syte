@@ -1,7 +1,7 @@
 import IStorage 
 
 class MemoryStorage(IStorage.IStorage):
-    """description of class"""
+    """Store the data of the todo list as key value pair"""
     def __init__ (self):
         self.m_taskDictionry = dict()
 

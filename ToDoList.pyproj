@@ -36,7 +36,6 @@
     <Compile Include="ListActions.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="protobuf_pb2.py" />
     <Compile Include="Task.py">
       <SubType>Code</SubType>
     </Compile>

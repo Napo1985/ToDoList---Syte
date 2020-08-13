@@ -1,7 +1,7 @@
 from Task import Task
 class TaskConvertor(object):
-    """description of class"""
-#-----------------------------------------------------------------------------------#
+    """Convert Task class into a string"""
+
     def ConvertTaskToString(self, task):
         try:
             if isinstance(task, Task):
@@ -10,6 +10,4 @@ class TaskConvertor(object):
         except :
             tb = traceback.format_exc()
             print (f'EXCEPTION {tb}') 
-
-#-----------------------------------------------------------------------------------#
 

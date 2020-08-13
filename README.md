@@ -63,9 +63,7 @@ Run tests
 
 Examples:
 ```
-"C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\python.exe"  
-    C:\Rpos\syte\To_Do_List\ToDoList\Api.py
+"C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\python.exe" C:\Rpos\syte\To_Do_List\ToDoList\Api.py
 
-"C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\python.exe"  
-    C:\Rpos\syte\To_Do_List\ToDoList\test_ListActions.py
+"C:\Program Files (x86)\Microsoft Visual Studio\Shared\Python36_64\python.exe" C:\Rpos\syte\To_Do_List\ToDoList\test_ListActions.py
 ```

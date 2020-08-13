@@ -7,19 +7,27 @@ import logging
 class ListActions(object):
     """implement all ToDoList actions"""
     
+
+    #paramters:
+    #storage - A class that derives from IStorage interface
+    #idManager - A class that derives from IIdManager interface
     def __init__(self,storage,idManager):
+        log = "app.log"
+        logging.basicConfig(filename=log,level=logging.DEBUG ,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
+        
         if not isinstance(storage, IStorage.IStorage):
+            logging.warning(f'storage must inherite from IStorage interface')
             raise TypeError("storage must inherite from IStorage interface")
         if not isinstance(idManager, IIdManager.IIdManager):
+            logging.warning(f'idManager must inherite from IIdManager interface')
             raise TypeError("idManager must inherite from IIdManager interface")
 
         self.m_memory = storage
         self.m_IdManager = idManager
-        log = "app.log"
-        logging.basicConfig(filename=log,level=logging.NOTSET ,format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S')
         logging.info('Init list actions')
-
-
+    
+    #paramters:
+    # taskDescription - A string with the todo task description
     def AddTaskToList(self, taskDescription):
         try:
             if isinstance(taskDescription, str):
@@ -32,12 +40,14 @@ class ListActions(object):
                 logging.info(f'task id - {newtask.m_taskID} added to the list')
                 return True
             else:
-                logging.warning(WARNING(f'taskDescription is not str type'))
+                logging.warning(f'taskDescription is not str type')
                 return False
         except :
             tb = traceback.format_exc()
-            print (f'EXCEPTION {tb}') 
+            logging.exception(f'EXCEPTION {tb}')
 
+    #paramters:
+    # id - An int of a specific todo task
     def RemoveTaskFromList (self, id):
         try:
             if self.m_memory.ContainKey(id):
@@ -50,8 +60,10 @@ class ListActions(object):
                 return None
         except:
             tb = traceback.format_exc()
-            print (f'EXCEPTION {tb}') 
+            logging.exception(f'EXCEPTION {tb}')
+  
 
+    
     def RemoveAllTasksFromList (self):
         try:
             for item in self.m_memory.GetAllValues():
@@ -61,16 +73,19 @@ class ListActions(object):
             logging.info(f'cleared list')
         except:
             tb = traceback.format_exc()
-            print (f'EXCEPTION {tb}') 
+            logging.exception(f'EXCEPTION {tb}') 
 
+                
     def GetAllTasks (self):
         try:
             tasksList = list(self.m_memory.GetAllValues());
             return tasksList;
         except :
             tb = traceback.format_exc()
-            print (f'EXCEPTION {tb}') 
+            logging.exception(f'EXCEPTION {tb}') 
 
+    #paramters:
+    # id - An int of a specific todo task
     def MarkTaskAsDone(self, id):
         try:
             task = self.m_memory.GetById(id)
@@ -83,4 +98,4 @@ class ListActions(object):
             return True
         except :
             tb = traceback.format_exc()
-            print (f'EXCEPTION {tb}')
+            logging.exception(f'EXCEPTION {tb}') 

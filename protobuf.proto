@@ -2,7 +2,7 @@ syntax = "proto2";
 
 package taskprotobuf;
 
-message Person 
+message TaskMsg 
 {
   required string task = 1;
   required bool isDone = 2;
